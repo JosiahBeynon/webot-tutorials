@@ -40,4 +40,5 @@ WoodenBox {
   mass 0.1
 }
 E-puck {
+  controller "EPuckGoForward"
 }
