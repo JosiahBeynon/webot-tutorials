@@ -10,9 +10,9 @@ WorldInfo {
   basicTimeStep 16
 }
 Viewpoint {
-  orientation -0.17732089643728308 0.15253709654629438 0.9722601163597656 1.7485535049882108
-  position 0.29623545456467126 -1.968749462573335 0.7352579302113882
-  follow "solid"
+  orientation -0.080522137598584 -0.019831741349339366 0.9965555114451013 3.6229508983251684
+  position 1.0545488137092731 0.7400544678799732 0.37168911992356857
+  follow "e-puck"
 }
 TexturedBackground {
 }
@@ -43,21 +43,78 @@ WoodenBox {
 E-puck {
 }
 Solid {
-  translation 0.2 0 0.2
+  translation 0.09 0.02 0.02
   children [
     Shape {
       appearance PBRAppearance {
+        baseColor 0 0.6 1
         roughness 1
         metalness 0
+      }
+      geometry DEF BALL_GEOMETRY Sphere {
+        radius 0.02
+      }
+    }
+  ]
+  boundingObject USE BALL_GEOMETRY
+  physics Physics {
+  }
+}
+Solid {
+  translation 0 0.3 1
+  rotation 0 0.2873478855663454 0.9578262852211513 0
+  children [
+    DEF BALL_GEOMETRY2 Shape {
+      appearance PBRAppearance {
       }
       geometry Sphere {
         radius 0.1
       }
     }
   ]
-  boundingObject Sphere {
-    radius 0.1
-  }
+  name "solid(1)"
+  boundingObject USE BALL_GEOMETRY2
   physics Physics {
   }
+}
+Solid {
+  translation 0 0.51 0.025
+  children [
+    DEF WALL_GEOMETRY Shape {
+      appearance PBRAppearance {
+        baseColor 1 0.3 1
+      }
+      geometry Box {
+        size 1.025 0.02 0.05
+      }
+    }
+  ]
+  name "solid(2)"
+  boundingObject USE WALL_GEOMETRY
+}
+Solid {
+  translation 0 -0.51 0.025
+  children [
+    USE WALL_GEOMETRY
+  ]
+  name "solid(3)"
+  boundingObject USE WALL_GEOMETRY
+}
+Solid {
+  translation -0.5 0 0.025
+  rotation 0 0 1 1.5708
+  children [
+    USE WALL_GEOMETRY
+  ]
+  name "solid(4)"
+  boundingObject USE WALL_GEOMETRY
+}
+Solid {
+  translation 0.51 0 0.025
+  rotation 0 0 1 1.5708
+  children [
+    USE WALL_GEOMETRY
+  ]
+  name "solid(5)"
+  boundingObject USE WALL_GEOMETRY
 }
