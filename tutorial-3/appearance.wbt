@@ -1,0 +1,156 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/gctronic/e-puck/protos/E-puck.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/DamascusSteel.proto"
+
+WorldInfo {
+  basicTimeStep 16
+}
+Viewpoint {
+  orientation 0.08003062264632539 0.08399886636250634 -0.9932468423753761 1.5291551078451289
+  position 0.22334026800146364 2.4755213950474326 0.48612251337078277
+  follow "e-puck"
+  followType "None"
+}
+TexturedBackground {
+  luminosity 0.5
+}
+TexturedBackgroundLight {
+  luminosity 0.2
+}
+Floor {
+  size 1 1
+  tileSize 0.05 0.05
+}
+E-puck {
+  rotation 0 0 1 3.14159
+  turretSlot [
+    SpotLight {
+      attenuation 0 0 1
+      beamWidth 0.7
+      direction 1 0 -1
+    }
+  ]
+}
+Solid {
+  translation 0.09 0.02 0.07
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "../tutorial-3/red_brick_wall.jpg"
+          ]
+        }
+        roughness 1
+      }
+      geometry DEF BALL_GEOMETRY Sphere {
+        radius 0.05
+      }
+    }
+  ]
+  boundingObject USE BALL_GEOMETRY
+  physics Physics {
+    mass 50
+  }
+}
+Solid {
+  translation -0.1 0.09 1
+  rotation 0 0.2873478855663454 0.9578262852211513 0
+  children [
+    DEF BALL_GEOMETRY2 Shape {
+      appearance DamascusSteel {
+      }
+      geometry Sphere {
+        radius 0.1
+      }
+    }
+  ]
+  name "solid(1)"
+  boundingObject USE BALL_GEOMETRY2
+  physics Physics {
+    mass 50
+  }
+}
+Solid {
+  translation 0 0.51 0.025
+  children [
+    DEF WALL_GEOMETRY Shape {
+      appearance PBRAppearance {
+        baseColor 1 0.3 1
+      }
+      geometry Box {
+        size 1.025 0.02 0.05
+      }
+    }
+  ]
+  name "solid(2)"
+  boundingObject USE WALL_GEOMETRY
+}
+Solid {
+  translation 0 -0.51 0.025
+  children [
+    USE WALL_GEOMETRY
+  ]
+  name "solid(3)"
+  boundingObject USE WALL_GEOMETRY
+}
+Solid {
+  translation -0.5 0 0.025
+  rotation 0 0 1 1.5708
+  children [
+    USE WALL_GEOMETRY
+  ]
+  name "solid(4)"
+  boundingObject USE WALL_GEOMETRY
+}
+Solid {
+  translation 0.51 0 0.025
+  rotation 0 0 1 1.5708
+  children [
+    USE WALL_GEOMETRY
+  ]
+  name "solid(5)"
+  boundingObject USE WALL_GEOMETRY
+}
+Solid {
+  translation -0.18 0 0.06
+  children [
+    DEF BOX Shape {
+      appearance PBRAppearance {
+        baseColor 1 1 0
+        roughness 1
+      }
+      geometry Box {
+        size 0.1 0.1 0.1
+      }
+    }
+  ]
+  name "solid(6)"
+  boundingObject USE BOX
+  physics Physics {
+  }
+}
+Solid {
+  translation -0.07 -0.18 0.05
+  children [
+    USE BOX
+  ]
+  name "solid(7)"
+  boundingObject USE BOX
+  physics Physics {
+  }
+}
+Solid {
+  translation 0.12 -0.08 0.05
+  children [
+    USE BOX
+  ]
+  name "solid(8)"
+  boundingObject USE BOX
+  physics Physics {
+  }
+}
